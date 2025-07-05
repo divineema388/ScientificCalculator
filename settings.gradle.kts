@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_NON_TRANSITIVE_DEPENDENCIES)
+    repositoriesMode.set(RepositoriesMode.of(RepositoriesMode.FailOnNonTransitiveDependencies)) // Corrected line
     repositories {
         google()
         mavenCentral()
