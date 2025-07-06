@@ -31,7 +31,7 @@ class GitHubAPKBuilder:
     def save_config(self, config):
         """Save configuration to file"""
         with open(self.config_file, 'w') as f:
-            json.dump(config, f, indent=2)
+                json.dump(config, f, indent=2)
         self.config = config
         
     def setup_credentials(self):
@@ -194,15 +194,17 @@ jobs:
 
       # 3. (Optional but good practice) Cache Gradle dependencies and wrapper
       #    This speeds up subsequent builds.
-      - name: Cache Gradle packages
-        uses: actions/cache@v3 # Using v3, a recent stable version
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      #    COMMENTED OUT to force fresh downloads and avoid cache issues.
+      #    Uncomment this section once your build is stable.
+      # - name: Cache Gradle packages
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ~/.gradle/caches
+      #       ~/.gradle/wrapper
+      #     key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-gradle-
 
       # 4. Grant execute permission for gradlew
       #    The gradlew script needs to be executable.
@@ -454,7 +456,7 @@ local.properties
                     print("✅ APK downloaded successfully!")
                     
                     # Find the APK file
-                    for root, dirs, files in os.walk('.'):
+                    for root, dirs, files in os.walk('.') :
                         for file in files:
                             if file.endswith('.apk'):
                                 apk_path = os.path.join(root, file)
